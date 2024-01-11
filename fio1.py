@@ -39,14 +39,28 @@ def modify_name_based_on_gender(name, gender):
     words = name.split()
     if gender == 'f':
         # Для женского пола: изменяем окончания слов
+        if words[0].endswith('ая'):
+            words[0] = words[0][:-2] + 'ую'
+        else:
+            words = [w[:-1] + 'ю' if w.endswith('я') and words.index(w) in [1, 2] else w for w in words]
         words = [w[:-1] + 'у' if w.endswith('а') else w for w in words]
-        words = [w[:-1] + 'ю' if w.endswith('я') and words.index(w) in [1, 2] else w for w in words]
+
     elif gender == 'm':
         # Для мужского пола: изменяем окончания слов
         if words[0].endswith('в'):
             words[0] = words[0][:-1] + 'ва'
+        if words[0].endswith('ий') or words[0].endswith('ый'):
+            words[0] = words[0][:-2] + 'ого'
+        if words[0][-1] in 'бвгджзклмнпрстфхцчшщ':
+            words[0] = words[0] + 'а'
         if len(words) > 1 and words[1][-1] in 'бвгджзклмнпрстфхцчшщ':
             words[1] = words[1] + 'а'
+        if len(words) > 1 and words[1].endswith('авела'):
+            words[1] = words[1][:-5] + 'авла'
+        if words[1].endswith('й') or words[1].endswith('ь'):
+            words[1] = words[1][:-1] + 'я'
+        elif words[1].endswith('я'):
+            words[1] = words[1][:-1] + 'ю'
         if words[-1].endswith('ич'):
             words[-1] = words[-1] + 'а'
 
