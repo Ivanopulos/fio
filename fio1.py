@@ -49,9 +49,9 @@ def modify_name_based_on_gender(name, gender):
         # Для мужского пола: изменяем окончания слов
         if words[0].endswith('в'):
             words[0] = words[0][:-1] + 'ва'
-        if words[0].endswith('ий') or words[0].endswith('ый'):
+        if words[0].endswith('ий') or words[0].endswith('ый') or words[0].endswith('ой'):
             words[0] = words[0][:-2] + 'ого'
-        if words[0][-1] in 'бвгджзклмнпрстфхцчшщ':
+        if words[0][-1] in 'бвгджзклмнпрстфцчшщ':
             words[0] = words[0] + 'а'
         if len(words) > 1 and words[1][-1] in 'бвгджзклмнпрстфхцчшщ':
             words[1] = words[1] + 'а'
